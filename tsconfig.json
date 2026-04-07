@@ -1,0 +1,111 @@
+{
+  "compilerOptions": {
+    // ─── Language & Environment ──────────────────────────────────────────
+
+    "target": "es2022",
+    // Which JS version to compile DOWN to.
+    // ES2020 is a safe modern default; use "ES5" only if targeting legacy browsers.
+
+    "lib": ["es2022", "DOM"],
+    // Built-in type definitions to include.
+    // "DOM" gives you window/document types; omit it for Node-only projects.
+
+    "module": "NodeNext",
+    // Module system for output. Use "NodeNext" for modern Node.js,
+    // "ESNext" for bundlers (Vite, Webpack), "CommonJS" for legacy Node.
+
+    "moduleResolution": "NodeNext",
+    // How TypeScript resolves imports. Must align with "module".
+    // "NodeNext" supports both ESM and CJS with proper .js extensions.
+
+    // ─── Strictness ──────────────────────────────────────────────────────
+
+    "strict": true,
+    // Master switch that enables ALL strict checks below.
+    // Always enable this — it's the #1 reason to use TypeScript.
+
+    "noUncheckedIndexedAccess": true,
+    // arr[0] returns T | undefined, not T. Prevents silent runtime crashes
+    // when accessing arrays or index signatures out of bounds.
+
+    "noImplicitReturns": true,
+    // Every code path in a function must explicitly return a value.
+
+    "noFallthroughCasesInSwitch": true,
+    // Prevents accidental fallthrough between switch cases.
+
+    "exactOptionalPropertyTypes": true,
+    // { foo?: string } means foo can be absent, but NOT explicitly set to undefined.
+    // Stricter than default behavior, catches subtle bugs.
+
+    // ─── Output ──────────────────────────────────────────────────────────
+
+    "outDir": "./dist",
+    // Where compiled JS files are emitted.
+
+    "rootDir": "./src",
+    // Root of your source files. Mirrors the folder structure into outDir.
+
+    "declaration": true,
+    // Generates .d.ts type declaration files alongside JS output.
+    // Essential when publishing a library so consumers get types.
+
+    "declarationMap": true,
+    // Generates .d.ts.map files — lets IDE "Go to Definition" jump to
+    // the original .ts source instead of the compiled .d.ts.
+
+    "sourceMap": true,
+    // Generates .js.map files for debuggers to map back to TypeScript source.
+    // Required for meaningful stack traces in dev and production.
+
+    // ─── Interop & Compatibility ──────────────────────────────────────────
+
+    "esModuleInterop": true,
+    // Allows: import fs from 'fs'  (instead of  import * as fs from 'fs')
+    // Fixes CommonJS/ESM interop issues. Almost always want this on.
+
+    "allowSyntheticDefaultImports": true,
+    // Implied by esModuleInterop. Allows default imports from modules
+    // that don't explicitly export a default.
+
+    "forceConsistentCasingInFileNames": true,
+    // Prevents bugs on case-insensitive file systems (macOS/Windows)
+    // that would fail on Linux (CI/prod). Critical for cross-platform teams.
+
+    "isolatedModules": true,
+    // Ensures each file can be transpiled independently (required by
+    // esbuild, SWC, Babel). Catches patterns that break fast transpilers.
+
+    // ─── Advanced / DX ───────────────────────────────────────────────────
+
+    "skipLibCheck": true,
+    // Skips type-checking of all .d.ts files in node_modules.
+    // Dramatically speeds up compilation; safe because you trust published types.
+
+    "resolveJsonModule": true,
+    // Allows: import config from './config.json'
+    // TypeScript will infer the shape of the JSON automatically.
+
+    "paths": {
+      "@/*": ["./src/*"],
+      "@/data/*": ["./data/*"],
+    },
+
+    "useUnknownInCatchVariables": true,
+    // catch (e) gives e type unknown instead of any.
+    // Forces you to properly narrow errors before using them.
+
+    "noPropertyAccessFromIndexSignature": true,
+    // Requires bracket notation for index signatures: obj["key"] not obj.key
+    // Makes dynamic vs. known property access visually distinct.
+  },
+
+  // ─── File Inclusion ─────────────────────────────────────────────────────
+
+  "include": ["src/**/*"],
+  // Only compile files inside /src. Keeps the compiler fast and focused.
+
+  "exclude": ["node_modules", "dist", "**/*.test.ts", "**/*.spec.ts"],
+  // node_modules and dist are always excluded by default, but being
+  // explicit prevents surprises. Test files often get their own tsconfig.
+}
