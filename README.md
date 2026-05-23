@@ -11,14 +11,30 @@ A personal investment portfolio tracker CLI tool. Manage multiple investment acc
 - **Report** — Display a formatted table with each account's current amount and portfolio percentage
 - **Update history** — Snapshot today's total portfolio value into `history.csv`
 
+## Screenshots
+
+### History
+
+![history](data-demo/history.png)
+
+### Account list
+
+![account list](data-demo/list.png)
+
+### Total
+
+![total](data-demo/total.png)
+
+### Add balance
+
+![add balance](data-demo/add-balance.png)
+
 ## Dependencies
 
-| Package | Version | Purpose |
-|---------|---------|---------|
-| `commander` | 14.0.3 | CLI argument parsing |
-| `@clack/prompts` | 1.2.0 | Interactive terminal prompts |
-| `papaparse` | 5.5.3 | CSV parsing and stringifying |
-| `table` | 6.9.0 | Formatted table output |
+- `commander` - CLI argument parsing
+- `@clack/prompts` - Interactive terminal prompts
+- `papaparse` - CSV parsing and stringifying
+- `table` - Formatted table output
 
 ### Dev Dependencies
 
@@ -53,6 +69,7 @@ This launches an interactive menu with the following options:
 - Remove account
 
 **History**
+
 - Add row to an existing account
 - Report
 - Update history
@@ -84,6 +101,7 @@ The `id` must be unique and will be used as the filename for account-specific CS
 For each account, create a corresponding CSV file under `data/accounts/`:
 
 **`data/accounts/savings_account.csv`**
+
 ```csv
 date,amount
 2026-04-01,1000
@@ -133,22 +151,22 @@ All data is stored in comma-separated CSV format.
 
 ### `data/accounts.csv`
 
-| Column | Type | Description |
-|--------|------|-------------|
-| `id` | string | Unique account identifier (slug) |
-| `name` | string | Human-readable account name |
+| Column | Type   | Description                      |
+| ------ | ------ | -------------------------------- |
+| `id`   | string | Unique account identifier (slug) |
+| `name` | string | Human-readable account name      |
 
 ### `data/accounts/<id>.csv`
 
-| Column | Type | Description |
-|--------|------|-------------|
-| `date` | string | Entry date (`YYYY-MM-DD`) |
+| Column   | Type   | Description                |
+| -------- | ------ | -------------------------- |
+| `date`   | string | Entry date (`YYYY-MM-DD`)  |
 | `amount` | number | Account value at that date |
 
 ### `data/history.csv`
 
-| Column | Type | Description |
-|--------|------|-------------|
-| `date` | string | Snapshot date (`YYYY-MM-DD`) |
-| `amount` | number | Total portfolio value |
-| `notes` | string | Optional notes |
+| Column   | Type   | Description                  |
+| -------- | ------ | ---------------------------- |
+| `date`   | string | Snapshot date (`YYYY-MM-DD`) |
+| `amount` | number | Total portfolio value        |
+| `notes`  | string | Optional notes               |
