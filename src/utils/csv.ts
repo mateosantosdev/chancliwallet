@@ -2,7 +2,7 @@ import { readFileSync, unlinkSync, writeFileSync } from "node:fs";
 import Papa, { UnparseConfig } from "papaparse";
 import { join } from "node:path";
 
-const DIR = "data-demo";
+const DIR = "data";
 export function readCSV<T>(filename: string) {
   try {
     const path = join(process.cwd(), DIR, filename);
