@@ -16,3 +16,9 @@ export type AccountReport = {
 };
 
 export type AccountHistoryRow = AccountRow & { notes?: string };
+
+export type HistoryRow = {
+  date: string;
+  amount: string;
+  notes: string;
+};
