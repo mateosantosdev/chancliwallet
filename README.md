@@ -47,6 +47,7 @@ pnpm dev
 This launches an interactive menu with the following options:
 
 **Accounts**
+
 - Add account
 - List accounts
 - Remove account
