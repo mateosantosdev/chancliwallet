@@ -51,7 +51,7 @@ A personal investment portfolio tracker CLI tool. Manage multiple investment acc
 ## Installation
 
 ```bash
-pnpm install
+pnpm install --frozen-lockfile
 ```
 
 ## Running the App
