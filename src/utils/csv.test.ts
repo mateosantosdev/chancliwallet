@@ -21,8 +21,7 @@ const mockReadFileSync = vi.mocked(readFileSync);
 const mockWriteFileSync = vi.mocked(writeFileSync);
 const mockUnlinkSync = vi.mocked(unlinkSync);
 
-const dataPath = (filename: string) =>
-	join(process.cwd(), "data", filename);
+const dataPath = (filename: string) => join(process.cwd(), "data", filename);
 
 afterEach(() => {
 	vi.clearAllMocks();
@@ -32,7 +31,10 @@ describe("readCSV", () => {
 	it("reads and parses the CSV at the correct path", () => {
 		mockReadFileSync.mockReturnValue("id,name\n1,foo");
 		const result = readCSV<{ id: string; name: string }>("accounts.csv");
-		expect(mockReadFileSync).toHaveBeenCalledWith(dataPath("accounts.csv"), "utf8");
+		expect(mockReadFileSync).toHaveBeenCalledWith(
+			dataPath("accounts.csv"),
+			"utf8",
+		);
 		expect(result).toEqual([{ id: "1", name: "foo" }]);
 	});
 
@@ -60,7 +62,8 @@ describe("appendCSV", () => {
 	it("appends a new row to the existing CSV", () => {
 		mockReadFileSync.mockReturnValue("id,name\n1,foo");
 		appendCSV("accounts.csv", { id: "2", name: "bar" });
-		const written = (mockWriteFileSync as ReturnType<typeof vi.fn>).mock.calls[0]?.[1] as string;
+		const written = (mockWriteFileSync as ReturnType<typeof vi.fn>).mock
+			.calls[0]?.[1] as string;
 		expect(written).toContain("1,foo");
 		expect(written).toContain("2,bar");
 	});
@@ -87,7 +90,9 @@ describe("removeCSV", () => {
 
 describe("getLatestRowFromCSV", () => {
 	it("returns the last row of the CSV", () => {
-		mockReadFileSync.mockReturnValue("date,amount\n2024-01-01,100\n2024-02-01,200");
+		mockReadFileSync.mockReturnValue(
+			"date,amount\n2024-01-01,100\n2024-02-01,200",
+		);
 		const result = getLatestRowFromCSV<{ date: string; amount: string }>(
 			"accounts/foo.csv",
 		);

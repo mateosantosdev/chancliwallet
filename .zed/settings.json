@@ -1,12 +1,12 @@
 {
-  "format_on_save": "on",
-  "languages": {
-    "TypeScript": {
-      "language_servers": ["biome", "typescript-language-server", "..."]
-    }
-  },
-  "code_actions_on_format": {
-    "source.organizeImports.biome": true,
-    "source.fixAll.biome": true,
-  },
+	"format_on_save": "on",
+	"languages": {
+		"TypeScript": {
+			"language_servers": ["biome", "typescript-language-server", "..."]
+		}
+	},
+	"code_actions_on_format": {
+		"source.organizeImports.biome": true,
+		"source.fixAll.biome": true
+	}
 }
